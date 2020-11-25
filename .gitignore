@@ -1,0 +1,5 @@
+*.hidden
+*~
+env/
+seed.txt
+__pycache__/
