@@ -4,3 +4,4 @@ env/
 iotaescrow.egg-info/
 dist/
 gateway.py
+seed.txt
