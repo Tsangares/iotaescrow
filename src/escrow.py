@@ -2,6 +2,7 @@ import time,json,os,subprocess,requests
 from iota import Iota, ProposedTransaction, Address, TryteString, Fragment, Transaction,adapter,ProposedBundle
 from iota.crypto.addresses import AddressGenerator
 import pathlib,logger
+LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ9"
 class Escrow:
     def __init__(self,node='https://nodes.thetangle.org:443'):
         #Get Seet
@@ -15,7 +16,8 @@ class Escrow:
         #If no seed, create one
         if not os.path.isfile('seed.txt'):
             path = pathlib.Path(__file__).parent.absolute()
-            subprocess.run([f'{path}/generateSeed'])
+            seed = ''.join([random.choice(LETTERS) for i in xrange(81)])
+            open('seed.txt','w+').write(seed)
             logger.info("Placed new seed in seed.txt")
         return open('seed.txt').read().strip().encode('utf-8')
     
@@ -146,7 +148,7 @@ def createEscrow(args):
     escrow = Escrow(node=args.node)
     escrow.startCli(50,7)
     
-if __name__=="__main__":
+def main():
     parser = argparse.ArgumentParser(description='Basic escrow using IOTA.')
     parser.add_argument('collateral', type=int, help='The collateral costs.')
     parser.add_argument('fee', type=int, help='Non-refundable costs.')

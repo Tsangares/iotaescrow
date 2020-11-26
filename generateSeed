@@ -1,7 +1,0 @@
-#!/bin/bash
-chars=ABCDEFGHIJKLMNOPQRSTUVWXYZ9
-seed=""
-for i in {1..80} ; do
-    seed="${seed}${chars:RANDOM%${#chars}:1}"
-done
-echo $seed > seed.txt

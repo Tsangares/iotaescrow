@@ -1,5 +1,6 @@
-*.hidden
 *~
-env/
-seed.txt
 __pycache__/
+env/
+iotaescrow.egg-info/
+dist/
+gateway.py
