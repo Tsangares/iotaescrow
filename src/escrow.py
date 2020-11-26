@@ -1,7 +1,7 @@
 import time,json,os,subprocess,requests
 from iota import Iota, ProposedTransaction, Address, TryteString, Fragment, Transaction,adapter,ProposedBundle
 from iota.crypto.addresses import AddressGenerator
-import pathlib,logger
+import pathlib,logging,argparse
 LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ9"
 class Escrow:
     def __init__(self,node='https://nodes.thetangle.org:443'):
@@ -16,9 +16,9 @@ class Escrow:
         #If no seed, create one
         if not os.path.isfile('seed.txt'):
             path = pathlib.Path(__file__).parent.absolute()
-            seed = ''.join([random.choice(LETTERS) for i in xrange(81)])
+            seed = ''.join([random.choice(LETTERS) for i in range(81)])
             open('seed.txt','w+').write(seed)
-            logger.info("Placed new seed in seed.txt")
+            logging.info("Placed new seed in seed.txt")
         return open('seed.txt').read().strip().encode('utf-8')
     
     #Creates an escrow holding address
@@ -44,7 +44,7 @@ class Escrow:
                     try:
                         return Address(msg.strip())
                     except: pass
-                logger.warning("Invalid address recieved")
+                logging.warning("Invalid address recieved")
         except requests.exceptions.ConnectionError as e:
             #Sometimes the public nodes will reject a request
             print("Error contacting server; retrying")
@@ -105,8 +105,8 @@ class Escrow:
         
         #Send transaction
         bundle = self.api.send_transfer(transfers=txs)['bundle']
-        logger.info(bundle.transactions[0].hash)
-        logger.info("Sent money back to recipient")
+        logging.info(bundle.transactions[0].hash)
+        logging.info("Sent money back to recipient")
         self.addRevenue(fee)
 
     def getBalance(self,address):
@@ -114,7 +114,7 @@ class Escrow:
             response = self.api.get_balances(addresses=[address])['balances']
             return response[0]
         except requests.exceptions.ConnectionError as e:
-            logger.info("Error contacting server; retrying")
+            logging.info("Error contacting server; retrying")
             return getBalance(self,address)
 
     #Record the amount of revenue recieved
