@@ -1,3 +1,7 @@
+## Context
+
+This tool is showcased in the project [IotaWorkshop](https://github.com/Tsangares/iotaworkshop)
+
 # Summary
 
 This is both a cli and a libaray that can be imported and used. The purpose of this libary is to create a escrow address, hold IOTAs until a condition is met, then release the funds and optimally take a fee.
