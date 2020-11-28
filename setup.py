@@ -4,7 +4,7 @@ long_description = open("README.md").read()
 
 setup(
         name='iotaescrow',
-        version='0.0.1.6',
+        version='0.0.2.7',
         description='Basic escrow utility using IOTA',
         long_description=long_description,
         long_description_content_type="text/markdown",
@@ -17,7 +17,7 @@ setup(
             ],
         entry_points={
             'console_scripts': [
-                'iotaescrow = src.escrow:main',
+                'iotaescrow = iotaescrow.escrow:main',
                 ]
             },
         classifiers=[
