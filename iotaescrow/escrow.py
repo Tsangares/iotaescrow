@@ -1,5 +1,6 @@
 import time,json,os,subprocess,requests
 from iota import Iota, ProposedTransaction, Address, TryteString, Fragment, Transaction,adapter,ProposedBundle
+import iota
 from iota.crypto.addresses import AddressGenerator
 import pathlib,logging,argparse,random
 LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ9"

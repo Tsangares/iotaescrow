@@ -4,7 +4,7 @@ long_description = open("README.md").read()
 
 setup(
         name='iotaescrow',
-        version='0.0.2.7',
+        version='0.0.2.8',
         description='Basic escrow utility using IOTA',
         long_description=long_description,
         long_description_content_type="text/markdown",
